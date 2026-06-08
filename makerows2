@@ -1,0 +1,77 @@
+package com.example.cetrixapp
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.cetrixapp.ui.theme.CetrixAppTheme
+
+class MainActivity : ComponentActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
+    setContent {
+      CetrixAppTheme {
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+          MyCustomScreen(modifier = Modifier.padding(innerPadding))
+        }
+      }
+    }
+  }
+}
+
+@Composable
+fun MyCustomScreen(modifier: Modifier = Modifier) {
+  Column(
+    modifier = modifier.fillMaxWidth()
+  ) {
+    // Top Header Row
+    Row(
+      modifier = Modifier
+        .background(Color.Gray)
+        .fillMaxWidth()
+        .height(35.dp),
+      verticalAlignment = Alignment.CenterVertically,
+      horizontalArrangement = Arrangement.Center
+    ) {
+      Text(
+        text = "welcome to mr android app",
+        modifier = Modifier.background(Color.Red),
+        fontSize = 24.sp
+      )
+    }
+
+    Spacer(modifier = Modifier.height(1.dp))
+
+    // Authentication Options Row
+    Row(
+      modifier = Modifier
+        .background(Color.Gray)
+        .fillMaxWidth()
+        .height(55.dp),
+      verticalAlignment = Alignment.CenterVertically,
+      horizontalArrangement = Arrangement.SpaceAround
+    ) {
+      Text(text = "Login", modifier = Modifier.background(Color.Green), fontSize = 20.sp)
+      Text(text = "signup", modifier = Modifier.background(Color.Blue), fontSize = 20.sp)
+      Text(text = "forget pass", modifier = Modifier.background(Color.White), fontSize = 15.sp)
+    }
+  }
+}
